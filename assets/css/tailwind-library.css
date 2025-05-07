@@ -4,53 +4,34 @@
  
 
 
-@layer components {
-  /* Default Button */
+@layer components { 
   .btn {
     @apply inline-block text-center font-semibold py-2 px-4 rounded-md;
-  }
-
-  /* Primary Button */
+  } 
   .btn-primary {
     @apply bg-blue-500 text-white hover:bg-blue-600 focus:ring-2 focus:ring-blue-500  ;
-  }
-
-  /* Secondary Button */
+  } 
   .btn-secondary {
     @apply bg-gray-500 text-white hover:bg-gray-600 focus:ring-2 focus:ring-gray-500  ;
-  }
-
-  /* Success Button */
+  } 
   .btn-success {
     @apply bg-green-500 text-white hover:bg-green-600 focus:ring-2 focus:ring-green-500  ;
-  }
-
-  /* Danger Button */
+  } 
   .btn-danger {
     @apply bg-red-500 text-white hover:bg-red-600 focus:ring-2 focus:ring-red-500  ;
-  }
-
-  /* Warning Button */
+  } 
   .btn-warning {
     @apply bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-500  ;
-  }
-
-  /* Info Button */
+  } 
   .btn-info {
     @apply bg-teal-500 text-white hover:bg-teal-600 focus:ring-2 focus:ring-teal-500  ;
-  }
-
-  /* Light Button */
+  } 
   .btn-light {
     @apply bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-2 focus:ring-gray-100  ;
-  }
-
-  /* Dark Button */
+  } 
   .btn-dark {
     @apply bg-gray-800 text-white hover:bg-gray-900 focus:ring-2 focus:ring-gray-800  ;
-  }
-
-  /* Link Button */
+  } 
   .btn-link {
     @apply text-blue-500 hover:text-blue-600 focus:ring-2 focus:ring-blue-500  ;
   }
@@ -391,21 +372,4 @@
   }
 }
 
-
-
-/* 
-
-Completed: 
-Grid system
-Buttons
-Cards
-Alerts
-Badges
-Navbar
-Modals
-Forms (inputs, checkboxes)
-Containers
-Tables 
-
-
-*/
+ 
