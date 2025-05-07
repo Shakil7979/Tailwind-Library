@@ -27,13 +27,18 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx @tailwindcss/cli -i ./assets/css/tailwind-library.css -o ./assets/css/library-output.css --watch --verbose"
+    "start": "npx @tailwindcss/cli -i ./assets/css/tailwind-library.css -o ./assets/css/tailwind-output.css --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shakil7979/Tailwind-Library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Shakil7979/Tailwind-Library/issues"
+  },
+  "homepage": "https://github.com/Shakil7979/Tailwind-Library#readme"
 }
-
-
- 
