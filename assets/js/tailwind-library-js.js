@@ -1,3 +1,4 @@
+// Dynamic row scrpt 
 function applyDynamicRowGap() {
     const rows = document.querySelectorAll('.row');
 
@@ -15,14 +16,12 @@ function applyDynamicRowGap() {
             '24': '6rem', '28': '7rem', '32': '8rem', '36': '9rem', '40': '10rem',
             '44': '11rem', '48': '12rem', '52': '13rem', '56': '14rem', '60': '15rem',
             '64': '16rem', '72': '18rem', '80': '20rem', '96': '24rem'
-        };
-
-        // Check for custom gap-[value]
+        }; 
+        
         const customGapMatch = gapClass.match(/gap-\[(.+?)\]/);
         if (customGapMatch) {
-            gapValue = customGapMatch[1]; // like '18px' or '1.2rem'
-        } else {
-            // Otherwise try standard Tailwind spacing like gap-4
+            gapValue = customGapMatch[1]; 
+        } else { 
             const scaleMatch = gapClass.match(/gap-(\d+(\.\d+)?)/);
             if (scaleMatch && tailwindSpacing[scaleMatch[1]]) {
                 gapValue = tailwindSpacing[scaleMatch[1]];
@@ -35,11 +34,9 @@ function applyDynamicRowGap() {
 
         const columns = Array.from(row.children);
         let totalUnits = 0;
-
-        // Get current screen width
+ 
         const screenWidth = window.innerWidth;
-
-        // Determine the applicable breakpoint
+ 
         const getActiveColClass = (col) => {
             const breakpoints = [
                 { prefix: 'xxl', min: 1400 },
@@ -58,8 +55,7 @@ function applyDynamicRowGap() {
             }
             return null;
         };
-
-        // Compute total units based on active breakpoint
+ 
         columns.forEach(col => {
             const activeCol = getActiveColClass(col);
             if (activeCol) totalUnits += activeCol.units;
@@ -123,18 +119,15 @@ document.querySelectorAll('[data-modal-target]').forEach(btn => {
     tab.addEventListener('click', function () {
       const parentId = this.closest('[data-tab-group]').getAttribute('data-tab-group');
       const targetId = this.getAttribute('data-tab-toggle');
-
-      // Remove active from all nav-links in the group
+ 
       document.querySelectorAll(`[data-tab-group="${parentId}"] .nav-link`).forEach(el => {
         el.classList.remove('active');
       });
-
-      // Hide all tab panes in the group
+ 
       document.querySelectorAll(`[data-tab-group="${parentId}"] .tab-pane`).forEach(el => {
         el.classList.remove('active');
       });
-
-      // Activate current 
+ 
       setTimeout(() => {
         this.classList.add('active');
         document.getElementById(targetId).classList.add('active');
@@ -147,17 +140,15 @@ document.querySelectorAll('[data-modal-target]').forEach(btn => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const dropdownButton = document.getElementById('dropdownButton');
-    const dropdownMenu = dropdownButton.nextElementSibling; // Dropdown menu
-    
-    // Toggle dropdown visibility on button click
+    const dropdownMenu = dropdownButton.nextElementSibling;  
+     
     dropdownButton.addEventListener('click', () => {
-      dropdownMenu.classList.toggle('show'); // Toggle the "show" class to display the dropdown menu
+      dropdownMenu.classList.toggle('show');  
     });
-  
-    // Close the dropdown menu if clicking outside of it
+   
     document.addEventListener('click', (event) => {
       if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-        dropdownMenu.classList.remove('show'); // Hide the dropdown menu if clicked outside
+        dropdownMenu.classList.remove('show');  
       }
     });
   });
@@ -171,24 +162,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const tooltipText = document.createElement('div');
       tooltipText.classList.add('tooltip-inner');
       tooltipText.textContent = trigger.getAttribute('title');
-  
-      // Append the tooltip to the body
+   
       document.body.appendChild(tooltipText);
-  
-      // On mouseenter, show the tooltip
+   
       trigger.addEventListener('mouseenter', () => {
         const rect = trigger.getBoundingClientRect();
         const tooltipWidth = tooltipText.offsetWidth;
         const tooltipHeight = tooltipText.offsetHeight;
-  
-        // Position the tooltip above the trigger
+   
         tooltipText.style.left = `${rect.left + rect.width / 2 - tooltipWidth / 2}px`;
-        tooltipText.style.top = `${rect.top - tooltipHeight - 8}px`;  // Adjust for the spacing
+        tooltipText.style.top = `${rect.top - tooltipHeight - 8}px`;  
   
         tooltipText.classList.add('show');
       });
-  
-      // On mouseleave, hide the tooltip
+   
       trigger.addEventListener('mouseleave', () => {
         tooltipText.classList.remove('show');
       });
@@ -208,8 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isExpanded = content.classList.contains('show');
   
         const parentAccordion = button.closest('.accordion');
-  
-        // Collapse all
+   
         parentAccordion.querySelectorAll('.accordion-collapse').forEach(el => {
           el.classList.remove('show');
           el.style.height = '0px';
@@ -218,17 +204,15 @@ document.addEventListener('DOMContentLoaded', () => {
         parentAccordion.querySelectorAll('.accordion-button').forEach(el => {
           el.classList.add('collapsed');
         });
-  
-        // Expand if not already open
+   
         if (!isExpanded) {
           content.classList.add('show');
           content.style.height = content.scrollHeight + 'px';
           button.classList.remove('collapsed');
-  
-          // Optional: Reset height after transition to allow for auto height resizing
+   
           setTimeout(() => {
             content.style.height = 'auto';
-          }, 300); // Match your transition duration
+          }, 300);  
         }
       });
     });

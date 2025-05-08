@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Google Authentication</title>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"></script>
+</head>
+<body>
+  <h1>Firebase Google Authentication</h1>
+  <button id="googleSignInBtn">Sign in with Google</button>
+  <button id="logoutBtn" style="display: none;">Logout</button>
+
+  <div id="userDetails" style="display: none;">
+    <h2>Welcome, <span id="userName"></span>!</h2>
+    <img id="userPhoto" src="" alt="User Photo" style="width: 50px; height: 50px; border-radius: 50%;">
+  </div>
+
+  <script>
+    // Firebase configuration (replace with your own Firebase config)
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "your-app.firebaseapp.com",
+      projectId: "your-app-id",
+      storageBucket: "your-app.appspot.com",
+      messagingSenderId: "xxxxxxx",
+      appId: "xxxxxxx"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    const googleSignInBtn = document.getElementById('googleSignInBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const userDetails = document.getElementById('userDetails');
+    const userName = document.getElementById('userName');
+    const userPhoto = document.getElementById('userPhoto');
+
+    // Check if the event listener is being attached to the button
+    if (googleSignInBtn) {
+      console.log("Google Sign-In button found");
+    } else {
+      console.error("Google Sign-In button not found");
+    }
+
+    // Google Sign-In Function
+    googleSignInBtn.onclick = function() {
+      console.log("Google Sign-In button clicked");
+
+      const provider = new firebase.auth.GoogleAuthProvider();
+      console.log("Attempting Google Sign-In...");
+
+      auth.signInWithPopup(provider)
+        .then((result) => {
+          const user = result.user;
+          console.log("User Signed In:", user);
+          displayUserDetails(user);
+        })
+        .catch((error) => {
+          console.log("Error during sign-in:", error.message);
+          alert("Error during sign-in. Check console for details.");
+        });
+    }
+
+    // Logout Function
+    logoutBtn.onclick = function() {
+      console.log("Logout button clicked");
+      auth.signOut()
+        .then(() => {
+          console.log("User logged out");
+          alert("Successfully logged out!");
+          googleSignInBtn.style.display = 'block';
+          logoutBtn.style.display = 'none';
+          userDetails.style.display = 'none';
+        })
+        .catch((error) => {
+          console.log("Logout Error:", error.message);
+          alert("Error during logout. Check console for details.");
+        });
+    }
+
+    // Display User Info
+    function displayUserDetails(user) {
+      userName.innerText = user.displayName;
+      userPhoto.src = user.photoURL;
+      googleSignInBtn.style.display = 'none';
+      logoutBtn.style.display = 'block';
+      userDetails.style.display = 'block';
+    }
+
+    // Detect authentication state
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log("User is signed in:", user);
+        displayUserDetails(user);
+      } else {
+        console.log("No user signed in.");
+        googleSignInBtn.style.display = 'block';
+        logoutBtn.style.display = 'none';
+        userDetails.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
