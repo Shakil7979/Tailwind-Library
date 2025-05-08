@@ -207,7 +207,296 @@
     @apply text-gray-500 font-medium pointer-events-none;
   }
    
+  /* Pagination Wrapper */
+  .pagination {
+    @apply inline-flex items-center -space-x-px text-sm;
+  }
+
+  /* Page Item */
+  .page-item a {
+    @apply px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 
+          hover:bg-gray-100 hover:text-gray-700;
+  }
+
+  /* First Item (Rounded Left) */
+  .page-item:first-child a {
+    @apply rounded-l-lg;
+  }
+
+  /* Last Item (Rounded Right) */
+  .page-item:last-child a {
+    @apply rounded-r-lg;
+  }
+
+  /* Active Page */
+  .page-item.active a {
+    @apply text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700;
+  }
+
+  /* Disabled Page */
+  .page-item.disabled a {
+    @apply opacity-50 cursor-not-allowed pointer-events-none;
+  }
+
+  /* Tab Nav Wrapper */
+  .nav {
+    @apply flex flex-wrap border-b border-gray-300 text-sm font-medium;
+  }
+
+  .nav-tabs {
+    @apply space-x-2;
+  }
+
+  /* Tab Link */
+  .nav-link {
+    @apply inline-block px-4 py-2 text-gray-600 border border-transparent rounded-t-lg 
+          hover:text-blue-600 hover:border-gray-300 cursor-pointer;
+  }
+
+  /* Active Tab */
+  .nav-link.active {
+    @apply text-blue-600 bg-white border-b-white border border-gray-300 rounded-t-lg;
+  }
+
+  /* Tab Pane */
+  .tab-content {
+    @apply mt-4;
+  }
+
+  .tab-pane {
+    @apply hidden transition-all duration-300;
+  }
+
+  .tab-pane.active {
+    @apply block transition-all duration-300;
+  } 
+
+  /* Dropdown Wrapper */
+  .dropdown {
+    @apply relative inline-block text-left;
+  }
+
+  /* Dropdown Toggle (Button) */
+  .dropdown-toggle {
+    @apply inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none;
+  }
+
+  /* Dropdown Menu */
+  .dropdown-menu {
+    @apply hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black opacity-0 transition-all duration-300 ease-in-out;
+  }
+
+  /* Dropdown Menu Show State */
+  .dropdown-menu.show {
+    @apply block opacity-100;
+  }
+
+  /* Dropdown Menu Item */
+  .dropdown-item {
+    @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer;
+  }
+
+  /* Active state for dropdown items */
+  .dropdown-item.active {
+    @apply text-blue-600 bg-gray-100;
+  }
+
   
+  /* Tooltip Text */
+  .tooltip-inner {
+    @apply absolute bottom-full mb-2 px-2 py-1 text-sm text-white bg-black rounded opacity-0 pointer-events-none transition-all duration-300 ease-in-out;
+  }
+
+  /* Tooltip Visible State */
+  .tooltip.show .tooltip-inner {
+    @apply opacity-100;
+  }
+
+  /* accodion  */
+  .accordion-button {
+    @apply w-full text-left px-4 py-3 text-gray-800 bg-gray-100 border border-gray-200 cursor-pointer transition-all duration-300;
+  }
+  
+  .accordion-button.collapsed {
+    @apply bg-white;
+  }
+  
+  .accordion-collapse {
+    @apply overflow-hidden transition-all duration-300 ease-in-out;
+    height: 0;
+    opacity: 0;
+  }
+  
+  .accordion-collapse.show {
+    @apply opacity-100;
+    height: auto;
+  }
+  
+  .accordion-body {
+    @apply p-4 bg-white border-t border-gray-200;
+  }
+
+  /* Base collapse style */
+  .collapse {
+    @apply transition-all duration-300 ease-in-out overflow-hidden;
+    visibility: hidden;
+    height: 0;
+    opacity: 0;
+  }
+
+  /* When the collapse is shown */
+  .collapse.show {
+    @apply opacity-100;
+    visibility: visible !important;
+    height: auto;
+  }
+
+  /* Spinner Border (Circular border spinning) */
+  .spinner-border {
+    @apply inline-block w-8 h-8 border-4 border-current border-t-transparent rounded-full animate-spin;
+  }
+
+  /* Spinner Grow (Pulse animation) */
+  .spinner-grow {
+    @apply inline-block w-8 h-8 bg-current rounded-full opacity-0 ;
+    animation: ping-fast 1s linear infinite;
+  }
+
+  /* Utility for screen readers */
+  .visually-hidden {
+    @apply absolute w-px h-px -m-px overflow-hidden whitespace-nowrap border-0 p-0;
+  }
+
+  /* Optional color classes like Bootstrap */
+  .text-primary {
+    @apply text-blue-600;
+  }
+
+  .text-success {
+    @apply text-green-600;
+  }
+
+  .text-danger {
+    @apply text-red-600;
+  }
+
+  /* Custom animation for "grow" style */
+  @keyframes ping-fast {
+    0% {
+      transform: scale(0.8);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
+  .animate-ping-fast  {
+    animation: ping-fast 1s linear infinite;
+  }
+
+  /* Toast wrapper */
+  .toast {
+    @apply max-w-sm w-full bg-white shadow-lg rounded-lg border border-gray-300 p-4 fixed bottom-5 right-5 z-50 transition-opacity duration-300 ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    @apply opacity-100 pointer-events-auto;
+  }
+
+  /* Common header style */
+  .toast-header {
+    @apply flex items-center justify-between mb-2 px-2 py-1 rounded-md;
+  }
+
+  /* Specific states */
+  .toast-header.success {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .toast-header.error {
+    @apply bg-red-100 text-red-800;
+  }
+
+  /* Toast body */
+  .toast-body {
+    @apply text-gray-700 text-sm;
+  }
+
+  /* Close button */
+  .btn-close {
+    @apply w-4 h-4 text-gray-600 hover:text-black cursor-pointer text-xl leading-none;
+    background: none;
+    border: none;
+  }
+
+  /* Wrapper */
+  .offcanvas {
+    @apply fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50;
+  }
+
+  /* Show/Hide control */
+  .offcanvas.show {
+    @apply translate-x-0;
+  }
+
+  /* Header */
+  .offcanvas-header {
+    @apply flex items-center justify-between p-4 border-b border-gray-200;
+  }
+
+  /* Title */
+  .offcanvas-title {
+    @apply text-lg font-semibold text-gray-800;
+  }
+
+  /* Body */
+  .offcanvas-body {
+    @apply p-4 text-sm text-gray-700;
+  }
+
+  /* Close Button */
+  .btn-close {
+    @apply text-gray-600 hover:text-black cursor-pointer text-xl leading-none bg-transparent border-none;
+  }
+
+  /* Bootstrap-like Progress Bar Component (using Tailwind) */
+
+  .progress {
+    @apply w-full bg-gray-200 rounded overflow-hidden;
+    height: 1.25rem; /* same as Bootstrap's 20px height */
+  }
+
+  .progress-bar {
+    @apply bg-blue-600 text-white text-center text-xs font-medium leading-[1.25rem] transition-all duration-500 ease-in-out;
+    width: 0%;
+  }
+
+  .progress-bar-striped {
+    background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 1rem 1rem;
+  }
+
+
+
+  
+
   
   
 }
@@ -372,4 +661,33 @@
   }
 }
 
+
+
+
+
+/* 
  
+Grid system
+Buttons
+Cards
+Alerts
+Badges
+Navbar
+Modals
+Forms (inputs, checkboxes)
+Containers
+Tables 
+
+Pagination
+Breadcrumbs
+Tabs
+Dropdowns
+Tooltips  
+Accordion 
+Spinners / Loaders 
+Toast Notifications 
+Offcanvas / Sidebar
+Progress bar
+
+
+ */

@@ -100,3 +100,184 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(document.body, { childList: true, subtree: true });
     window.addEventListener('resize', applyDynamicRowGap);
 });
+
+
+// Open modal
+document.querySelectorAll('[data-modal-target]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modalId = btn.getAttribute('data-modal-target');
+      document.querySelector(modalId).classList.add('show');
+    });
+  });
+
+  // Close modal
+  document.querySelectorAll('.close-modal').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modalId = btn.getAttribute('data-modal-close');
+      document.querySelector(modalId).classList.remove('show');
+    });
+  });
+
+//  Tabs script 
+  document.querySelectorAll('[data-tab-toggle]').forEach(tab => {
+    tab.addEventListener('click', function () {
+      const parentId = this.closest('[data-tab-group]').getAttribute('data-tab-group');
+      const targetId = this.getAttribute('data-tab-toggle');
+
+      // Remove active from all nav-links in the group
+      document.querySelectorAll(`[data-tab-group="${parentId}"] .nav-link`).forEach(el => {
+        el.classList.remove('active');
+      });
+
+      // Hide all tab panes in the group
+      document.querySelectorAll(`[data-tab-group="${parentId}"] .tab-pane`).forEach(el => {
+        el.classList.remove('active');
+      });
+
+      // Activate current 
+      setTimeout(() => {
+        this.classList.add('active');
+        document.getElementById(targetId).classList.add('active');
+      }, 10);
+    });
+  }); 
+
+
+//   Toggling The Dropdown 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownButton = document.getElementById('dropdownButton');
+    const dropdownMenu = dropdownButton.nextElementSibling; // Dropdown menu
+    
+    // Toggle dropdown visibility on button click
+    dropdownButton.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('show'); // Toggle the "show" class to display the dropdown menu
+    });
+  
+    // Close the dropdown menu if clicking outside of it
+    document.addEventListener('click', (event) => {
+      if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.remove('show'); // Hide the dropdown menu if clicked outside
+      }
+    });
+  });
+  
+// Tooltip 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const tooltipTriggers = document.querySelectorAll('[data-toggle="tooltip"]');
+  
+    tooltipTriggers.forEach(trigger => {
+      const tooltipText = document.createElement('div');
+      tooltipText.classList.add('tooltip-inner');
+      tooltipText.textContent = trigger.getAttribute('title');
+  
+      // Append the tooltip to the body
+      document.body.appendChild(tooltipText);
+  
+      // On mouseenter, show the tooltip
+      trigger.addEventListener('mouseenter', () => {
+        const rect = trigger.getBoundingClientRect();
+        const tooltipWidth = tooltipText.offsetWidth;
+        const tooltipHeight = tooltipText.offsetHeight;
+  
+        // Position the tooltip above the trigger
+        tooltipText.style.left = `${rect.left + rect.width / 2 - tooltipWidth / 2}px`;
+        tooltipText.style.top = `${rect.top - tooltipHeight - 8}px`;  // Adjust for the spacing
+  
+        tooltipText.classList.add('show');
+      });
+  
+      // On mouseleave, hide the tooltip
+      trigger.addEventListener('mouseleave', () => {
+        tooltipText.classList.remove('show');
+      });
+    });
+  });
+  
+
+
+//   Accordion Toggle 
+document.addEventListener('DOMContentLoaded', () => {
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+  
+    accordionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetSelector = button.getAttribute('data-bs-target');
+        const content = document.querySelector(targetSelector);
+        const isExpanded = content.classList.contains('show');
+  
+        const parentAccordion = button.closest('.accordion');
+  
+        // Collapse all
+        parentAccordion.querySelectorAll('.accordion-collapse').forEach(el => {
+          el.classList.remove('show');
+          el.style.height = '0px';
+        });
+  
+        parentAccordion.querySelectorAll('.accordion-button').forEach(el => {
+          el.classList.add('collapsed');
+        });
+  
+        // Expand if not already open
+        if (!isExpanded) {
+          content.classList.add('show');
+          content.style.height = content.scrollHeight + 'px';
+          button.classList.remove('collapsed');
+  
+          // Optional: Reset height after transition to allow for auto height resizing
+          setTimeout(() => {
+            content.style.height = 'auto';
+          }, 300); // Match your transition duration
+        }
+      });
+    });
+  });
+  
+
+// Toast
+
+document.querySelectorAll('[data-bs-dismiss="toast"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const toast = btn.closest('.toast');
+      toast.classList.remove('show');
+    });
+  });
+
+
+//   Off Canvas 
+
+document.querySelectorAll('[data-bs-toggle="offcanvas"]').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const targetSelector = trigger.getAttribute('data-bs-target');
+      const offcanvas = document.querySelector(targetSelector);
+      offcanvas.classList.add('show');
+    });
+  });
+  
+  document.querySelectorAll('[data-bs-dismiss="offcanvas"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const offcanvas = btn.closest('.offcanvas');
+      offcanvas.classList.remove('show');
+    });
+  });
+  
+  
+//   Progress 
+document.getElementById('startProgress').addEventListener('click', () => {
+    let progress = 0;
+    const progressBar = document.querySelector('.progress-bar');
+  
+    const interval = setInterval(() => {
+      if (progress >= 100) {
+        clearInterval(interval);
+        return;
+      }
+  
+      progress += 10;
+      progressBar.style.width = progress + '%';
+      progressBar.innerText = progress + '%';
+      progressBar.setAttribute('aria-valuenow', progress);
+    }, 500);
+  });
+  
