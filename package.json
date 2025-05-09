@@ -8,6 +8,7 @@
     "detect-libc": "^1.0.3",
     "enhanced-resolve": "^5.18.1",
     "fill-range": "^7.1.1",
+    "flowbite": "^3.1.2",
     "graceful-fs": "^4.2.11",
     "is-extglob": "^2.1.1",
     "is-glob": "^4.0.3",
@@ -24,7 +25,6 @@
     "tapable": "^2.2.1",
     "to-regex-range": "^5.0.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx @tailwindcss/cli -i ./assets/css/tailwind-library.css -o ./assets/css/tailwind-output.css --watch"
